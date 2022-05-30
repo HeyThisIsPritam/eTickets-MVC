@@ -11,6 +11,8 @@ namespace eTickets.Data
         Comedy,
         Action,
         Drama,
-        Documentry
+        Documentary,
+        Cartoon,
+        Horror
     }
 }

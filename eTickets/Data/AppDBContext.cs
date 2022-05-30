@@ -21,9 +21,15 @@ namespace eTickets.Data
                 am.MovieId
             });
             modelBuilder.Entity<Actor_Movie>().HasOne(m => m.Movie).WithMany(am => am.Actor_Movies).HasForeignKey(m => m.MovieId);
-            modelBuilder.Entity<Actor_Movie>().HasOne(a => a.Actor).WithMany(am => am.Actor_Movies).HasForeignKey(a => a.ActorId);
+            modelBuilder.Entity<Actor_Movie>().HasOne(m => m.Actor).WithMany(am => am.Actor_Movies).HasForeignKey(m => m.ActorId);
             base.OnModelCreating(modelBuilder);
         }
+
+        internal Task GetAllAsync(Func<object, object> p)
+        {
+            throw new NotImplementedException();
+        }
+
         public DbSet<Actor> Actors { get; set; }
         public DbSet<Movie> Movies { get; set; }
         public DbSet<Actor_Movie> Actor_Movies { get; set; }

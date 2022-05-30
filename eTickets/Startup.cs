@@ -1,4 +1,5 @@
 using eTickets.Data;
+using eTickets.Data.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,6 +29,9 @@ namespace eTickets
             //DbContext Configuration Add
             services.AddDbContext<AppDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("eTicketConnectionString")));
 
+            //Configure Services
+            services.AddScoped<IActorService, ActorService>();
+            
             services.AddControllersWithViews();
         }
 
@@ -57,6 +61,10 @@ namespace eTickets
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            //Seed Databae
+
+            AppDbInitializer.Seed(app);
         }
     }
 }
